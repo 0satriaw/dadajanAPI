@@ -93,7 +93,6 @@ class UserController extends Controller
 
         $updateData = $request->all();
         $validate = Validator::make($updateData,[
-            'email'=>'required|email:rfc,dns',
             'name'=>'required',
             'no_telp'=>'required|numeric|digits_between:8,13'
         ]);
@@ -101,7 +100,6 @@ class UserController extends Controller
         if($validate->fails())
             return response(['message'=>$validate->errors()],404);//return error invalid input
 
-        $user->email = $updateData['email'];
         $user->name = $updateData['name'];
         $user->no_telp = $updateData['no_telp'];
 
